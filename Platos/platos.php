@@ -35,6 +35,15 @@ if (isset($_POST["Enviar"])) {
 </head>
 
 <body>
+     <!-- ===================== HEADER ===================== -->
+  <header>
+    <div class="header-container">
+      <a href="index.html"><div class="logo">
+        <div class="logo-icon">🍝</div>
+        <span>Trattoria Bella Italia</span>
+      </div></a>
+    </div>
+  </header>
     <div id="formulario">
     <form action="" method="post">
         <h1>Inserción de platos</h1>
