@@ -53,8 +53,69 @@ if (isset($_POST["Enviar"])) {
         <label>Descripcion:</label>
         <input type="text" name="Descripcion" required><br><br>
 
-        <label>Precio:</label>
-        <input type="number" name="Precio" min="0" required><br><br>
+        <label for="tipo">Ingrediente 1: </label>
+        <select name ="Ingrediente1">
+            <option value="tomate">Tomate</option>
+            <option value="mozzarella">Mozzarella</option>
+            <option value="albahaca">Albahaca</option>
+            <option value="aceite_oliva">Aceite de oliva</option>
+            <option value="ajo">Ajo</option>
+            <option value="cebolla">Cebolla</option>
+            <option value="oregano">Orégano</option>
+            <option value="parmesano">Queso parmesano</option>
+            <option value="pasta">Pasta</option>
+            <option value="champiñones">Champiñones</option>
+        </select>
+         <label>Cantidad:</label>
+         <input type="number" name="Cantidad1" min="0" value="0"><br><br>
+
+        <label for="tipo">Ingrediente 2: </label>
+        <select name ="Ingrediente2">
+            <option value="tomate">Tomate</option>
+            <option value="mozzarella">Mozzarella</option>
+            <option value="albahaca">Albahaca</option>
+            <option value="aceite_oliva">Aceite de oliva</option>
+            <option value="ajo">Ajo</option>
+            <option value="cebolla">Cebolla</option>
+            <option value="oregano">Orégano</option>
+            <option value="parmesano">Queso parmesano</option>
+            <option value="pasta">Pasta</option>
+            <option value="champiñones">Champiñones</option>
+        </select>
+         <label>Cantidad:</label>
+         <input type="number" name="Cantidad2" min="0" value="0"><br><br>
+
+        <label for="tipo">Ingrediente 3: </label>
+        <select name ="Ingrediente3">
+            <option value="tomate">Tomate</option>
+            <option value="mozzarella">Mozzarella</option>
+            <option value="albahaca">Albahaca</option>
+            <option value="aceite_oliva">Aceite de oliva</option>
+            <option value="ajo">Ajo</option>
+            <option value="cebolla">Cebolla</option>
+            <option value="oregano">Orégano</option>
+            <option value="parmesano">Queso parmesano</option>
+            <option value="pasta">Pasta</option>
+            <option value="champiñones">Champiñones</option>
+        </select>
+         <label>Cantidad:</label>
+         <input type="number" name="Cantidad3" min="0" value="0"><br><br>
+
+        <label for="tipo">Ingrediente 4: </label>
+        <select name ="Ingrediente4">
+            <option value="tomate">Tomate</option>
+            <option value="mozzarella">Mozzarella</option>
+            <option value="albahaca">Albahaca</option>
+            <option value="aceite_oliva">Aceite de oliva</option>
+            <option value="ajo">Ajo</option>
+            <option value="cebolla">Cebolla</option>
+            <option value="oregano">Orégano</option>
+            <option value="parmesano">Queso parmesano</option>
+            <option value="pasta">Pasta</option>
+            <option value="champiñones">Champiñones</option>
+        </select>
+         <label>Cantidad:</label>
+         <input type="number" name="Cantidad4" min="0" value="0"><br><br>
 
         <input type="submit" name="Enviar"></button>
     </form>
