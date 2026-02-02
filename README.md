@@ -10,7 +10,7 @@ El objetivo es gestionar de forma centralizada y eficiente el inventario, produc
 - `/Platos` — Funcionalidades y recursos específicos de la feature Platos  
 - `/Productos` — Funcionalidades y recursos específicos de la feature Productos  
 - `/Proveedores` — Funcionalidades y recursos específicos de la feature Proveedores  
-- `/tools` — Archivos y utilidades compartidas, como scripts SQL, estilos y helpers  
+- `/Compartido` — Archivos y utilidades compartidas, como scripts SQL, estilos y helpers  
 
 ---
 
