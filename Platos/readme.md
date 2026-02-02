@@ -25,7 +25,7 @@ La feature **Platos** permite:
 ## 🔄 Flujo de trabajo
 
 - Todos los cambios relacionados con **Platos** deben hacerse en la rama `Rama/Platos`.
-- No modificar otras carpetas (`Productos`, `Proveedores`, `/tools`) desde esta branch.
+- No modificar otras carpetas (`Productos`, `Proveedores`, `Compartido`) desde esta branch.
 - Los cambios se integran a `main` mediante **Pull Requests**, asegurando que solo se vean los archivos de Platos.
 
 ---
