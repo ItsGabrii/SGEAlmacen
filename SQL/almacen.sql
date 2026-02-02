@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 02-02-2026 a las 10:33:49
+-- Tiempo de generación: 02-02-2026 a las 10:46:47
 -- Versión del servidor: 8.4.3
 -- Versión de PHP: 8.3.16
 
@@ -53,11 +53,12 @@ CREATE TABLE `plato_producto` (
 --
 
 CREATE TABLE `productos` (
+  `tipo` enum('ingrediente','otros') DEFAULT NULL,
   `id_producto` int NOT NULL,
+  `cod_proveedor` varchar(23) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `nombre` varchar(150) DEFAULT NULL,
-  `precio` decimal(8,2) DEFAULT NULL,
   `cantidad` int DEFAULT NULL,
-  `tipo` enum('ingrediente','otros') DEFAULT NULL
+  `precio` decimal(8,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
