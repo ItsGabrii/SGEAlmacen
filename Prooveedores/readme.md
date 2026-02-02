@@ -24,8 +24,8 @@ La feature **Proveedores** permite:
 
 ## 🔄 Flujo de trabajo
 
-- Todos los cambios relacionados con **Proveedores** deben hacerse en la rama `feature/proveedores`.
-- No modificar otras carpetas (`Platos`, `Productos`, `/tools`) desde esta branch.
+- Todos los cambios relacionados con **Proveedores** deben hacerse en la rama `Rama/Proveedores`.
+- No modificar otras carpetas (`Platos`, `Productos`, `Compartido`) desde esta branch.
 - Los cambios se integran a `main` mediante **Pull Requests**, asegurando que solo se vean los archivos de Proveedores.
 
 ---
