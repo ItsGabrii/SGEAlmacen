@@ -1,16 +1,36 @@
 <?php
 if (isset($_POST["Enviar"])) {
-
-    /*
-    $conexion = mysqli_connect("localhost", "root", "", "lindavista")
+    $conexion = mysqli_connect("localhost", "root", "", "base_datos_dam")
         or die("No se puede conectar o seleccionar la base de datos");
 
     $nombre = $_POST["Nombre"];
     $descripcion = $_POST["Descripcion"];
-    $precio = $_POST["Precio"];
+    $preciosIngredientes = [
+        "tomate" => 0.50,
+        "mozzarella" => 1.20,
+        "albahaca" => 0.30,
+        "aceite_oliva" => 0.40,
+        "ajo" => 0.20,
+        "cebolla" => 0.25,
+        "oregano" => 0.15,
+        "parmesano" => 1.50,
+        "pasta" => 0.80,
+        "champiñones" => 0.70
+    ];
 
-    $sql = "INSERT INTO platos (nombre, descripcion, precio)
-            VALUES ('$nombre', '$descripcion', '$precio')";
+     $precioTotal = 0;
+
+    for ($i = 1; $i <= 4; $i++) {
+        $ingrediente = $_POST["Ingrediente$i"];
+        $cantidad = (int)$_POST["Cantidad$i"];
+
+        if ($cantidad > 0) {
+            $precioTotal += $preciosIngredientes[$ingrediente] * $cantidad;
+        }
+    }
+
+    $sql = "INSERT INTO plato (nombre, descripcion, precio)
+            VALUES ('$nombre', '$descripcion', '$precioTotal')";
 
     $resultado = mysqli_query($conexion, $sql);
 
@@ -18,10 +38,35 @@ if (isset($_POST["Enviar"])) {
         ? "<p style='color:green;'>El plato se agregó correctamente.</p>"
         : "<p style='color:red;'>Hubo un error al agregar el plato.</p>";
 
-    mysqli_close($conexion);
-    */
+    
 
-    echo "<p style='color:green;'>El plato se agregó correctamente.</p>";
+    $consulta = "SELECT * FROM plato";
+    $resultadoConsulta = mysqli_query($conexion, $consulta);
+
+    echo "<table border='1'>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+            </tr>";
+
+    while ($fila = mysqli_fetch_assoc($resultadoConsulta)) {
+        echo "<tr>
+                <td>{$fila['id_plato']}</td>
+                <td>{$fila['nombre']}</td>
+                <td>{$fila['descripcion']}</td>
+                <td>{$fila['precio']}</td>
+              </tr>";
+    }
+
+    echo "</table>";
+
+    echo "<br>
+    <a href=''>Volver al formulario</a> | 
+    <a href='http://127.0.0.1/phpmyadmin/index.php?route=/sql&db=base_datos_dam&table=plato&pos=0' target='_blank'>Ir a la base de datos</a>";
+
+    mysqli_close($conexion);
 
 } else {
 ?>
