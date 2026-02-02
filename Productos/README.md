@@ -24,8 +24,8 @@ La feature Productos permite:
 
 ## 🔄 Flujo de trabajo
 
-- Todos los cambios relacionados con Productos deben hacerse en la rama `feature/productos`.  
-- No modificar otras carpetas (`Platos`, `Proveedores`, `/tools`) desde esta branch.  
+- Todos los cambios relacionados con Productos deben hacerse en la rama `Rama/Productos`.  
+- No modificar otras carpetas (`Platos`, `Proveedores`, `Compartido`) desde esta branch.  
 - Los cambios se integran a `main` mediante Pull Requests, asegurando que solo se vean los archivos de Productos.
 
 ---
