@@ -55,70 +55,6 @@ if (isset($_POST['nuevo_producto'])) {
     mysqli_close($conexion);
 
 }
-elseif(isset($_POST['agregar_stock'])){
-
-  $tipo_producto = $_POST['tipo_producto'];
-  $id_producto = $_POST['id_producto'];
-  $codigo_proveedor = $_POST['codigo_proveedor'];
-  $nombreProducto = $_POST['nombre_producto'];
-  $cantidad_producto = $_POST['cantidad_producto'];
-  $precio_producto = $_POST['precio_producto'];
-  
-  // CONEXIÓN
-  $conexion = mysqli_connect("localhost","root","") or die ("Error al establecer conexión con servidor de BBDD.");
-  mysqli_select_db($conexion,"almacen")or die ("Error al seleccionar la BBDD");
-
-  // SELECT para comprobar si existe el producto
-  $instruccionSelect = "SELECT * FROM productos WHERE id_producto='$id_producto'";
-  $consultaSelect = mysqli_query($conexion,$instruccionSelect) or die ("Error al mostrar datos.");
-
-  $numfilas = mysqli_num_rows($consultaSelect);
-  if($numfilas == 1){
-
-    // UPDATE A LA BBDD (sumamos stock)
-    $instruccionUpdate = "UPDATE productos SET
-      tipo = '$tipo_producto',
-      cod_proveedor = '$codigo_proveedor',
-      nombre = '$nombreProducto',
-      cantidad = cantidad + $cantidad_producto,
-      precio = '$precio_producto'
-      WHERE id_producto='$id_producto'";
-    
-    $consultaUpdate = mysqli_query($conexion,$instruccionUpdate) or die ("Error al lanzar update de datos.");
-
-    $instruccionSelect = "SELECT * FROM productos WHERE id_producto='$id_producto'";
-    $consultaSelect = mysqli_query($conexion,$instruccionSelect) or die ("Error al mostrar registro actualizado. ");
-
-        print "<h2>PRODUCTO MODIFICADO CORRECTAMENTE: </h2>";
-        print "<table border='1'>";
-            print "<tr>";
-                print "<th>Tipo</th>";
-                print "<th>Id_producto</th>";
-                print "<th>Cod_proveedor</th>";
-                print "<th>Nombre</th>";
-                print "<th>Cantidad</th>";
-                print "<th>Precio</th>";
-            print "</tr>";
-
-        for($i=0;$i<$numfilas;$i++){
-            $fila = mysqli_fetch_array($consultaSelect);
-            print "<tr>";
-                print"<td>".$fila['tipo']."</td>";
-                print"<td>".$fila['id_producto']."</td>";
-                print"<td>".$fila['cod_proveedor']."</td>";
-                print"<td>".$fila['nombre']."</td>";
-                print"<td>".$fila['cantidad']."</td>";
-                print"<td>".$fila['precio']."</td>";         
-            print "</tr>";            
-        }
-        print "</table>";
-        mysqli_close($conexion);
-
-  }else{
-    print("Error, ese producto no existe o no esta registrado.");
-    mysqli_close($conexion);
-  }
-}
 else {
 ?>
 <!DOCTYPE html>
@@ -169,7 +105,6 @@ else {
       <label>Precio:</label>
       <input type="number" name="precio_producto" required >
 
-      <input type="submit" name="agregar_stock" value="Modificar Producto">
       <input type="submit" name="nuevo_producto" value="Nuevo Producto">
 
     </form>
@@ -180,3 +115,4 @@ else {
 <?php 
 } 
 ?>
+
