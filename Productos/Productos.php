@@ -47,7 +47,7 @@ if (isset($_POST['nuevo_producto'])) {
         }
         print "</table>";
 ?>
-        <a href="mostrar_almacen.php">Productos Almacén</a>
+        <a href="TablaProductos.php">Productos Almacén</a>
 <?php      
     }else{
         print "No se ha insertado el nuevo producto correctamente.";
@@ -115,4 +115,5 @@ else {
 <?php 
 } 
 ?>
+
 
