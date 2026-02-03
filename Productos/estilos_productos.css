@@ -1,3 +1,4 @@
+
 /* ===================== RESET ===================== */
 * {
   margin: 0;
@@ -104,3 +105,80 @@ header {
   font-weight: bold;
   color: #1f7a1f;
 }
+
+/* ===================== TABLA PRODUCTOS ===================== */
+
+table {
+  width: 100%;
+  max-width: 900px;
+  margin: 80px auto;
+  background: #ffffff;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+  overflow: hidden;
+}
+
+/* Cabecera */
+th {
+  background: #1f7a1f;
+  color: white;
+  padding: 16px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* Celdas */
+td {
+  padding: 14px;
+  text-align: center;
+  font-size: 14px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* Última fila sin borde */
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* Filas alternas suaves */
+tr:nth-child(even) td {
+  background-color: #f7f7f7;
+}
+
+/* Hover elegante */
+tr:hover td {
+  background-color: #eef6ee;
+}
+
+/* ===================== TÍTULOS DE RESULTADO ===================== */
+
+h2 {
+  text-align: center;
+  color: #1f7a1f;
+  margin-top: 60px;
+  margin-bottom: 30px;
+  font-size: 22px;
+}
+
+/* ===================== BOTÓN VOLVER / PRODUCTOS ===================== */
+
+table + a {
+  display: block;
+  width: fit-content;
+  margin: 30px auto 80px;
+  padding: 12px 26px;
+  background: #1f7a1f;
+  color: white;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+table + a:hover {
+  background: #166534;
+}
+
