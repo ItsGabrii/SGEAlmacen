@@ -1,4 +1,3 @@
-
 /* ===================== RESET ===================== */
 * {
   margin: 0;
@@ -8,7 +7,7 @@
 }
 
 body {
-  background-color: #fafafa;
+  background-color: #f4f6f8; /* Color más neutro tipo panel */
   color: #2b2b2b;
 }
 
@@ -60,12 +59,13 @@ input[type="submit"] {
   font-size: 16px;
   cursor: pointer;
   transition: background 0.2s;
-  margin-top:20px;
+  margin-top: 20px;
 }
 
 input[type="submit"]:hover {
   background: #166534;
 }
+
 /* ---------- HEADER ---------- */
 a {
   text-decoration: none;
@@ -106,36 +106,45 @@ header {
   color: #1f7a1f;
 }
 
-/* ===================== TABLA PRODUCTOS ===================== */
-
+/* ===================== TABLA PRODUCTOS - ESTILO ADMIN ===================== */
 table {
-  width: 100%;
-  max-width: 900px;
-  margin: 80px auto;
+  width: 90%;
+  max-width: 1000px;
+  margin: 60px auto;
   background: #ffffff;
-  border-collapse: separate;
-  border-spacing: 0;
-  border-radius: 14px;
-  box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+  border-collapse: collapse;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   overflow: hidden;
+  font-size: 14px;
 }
 
 /* Cabecera */
 th {
-  background: #1f7a1f;
-  color: white;
-  padding: 16px;
-  text-align: center;
-  font-size: 15px;
-  font-weight: bold;
-}
-
-/* Celdas */
-td {
+  background: #1f2937; /* gris oscuro tipo admin panel */
+  color: #ffffff;
   padding: 14px;
   text-align: center;
-  font-size: 14px;
-  border-bottom: 1px solid #e5e5e5;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Filas */
+td {
+  padding: 12px 10px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Filas alternas */
+tr:nth-child(even) td {
+  background-color: #f8f9fa;
+}
+
+/* Hover elegante */
+tr:hover td {
+  background-color: #e0f2fe; /* azul claro al pasar */
 }
 
 /* Última fila sin borde */
@@ -143,28 +152,46 @@ tr:last-child td {
   border-bottom: none;
 }
 
-/* Filas alternas suaves */
-tr:nth-child(even) td {
-  background-color: #f7f7f7;
+/* ===================== BOTONES ===================== */
+table button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: "Georgia", serif;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin: 2px;
 }
 
-/* Hover elegante */
-tr:hover td {
-  background-color: #eef6ee;
+/* Botón MODIFICAR (AZUL) */
+table button[name="id_producto"] {
+  background: #2563eb;
+  color: #ffffff;
 }
 
-/* ===================== TÍTULOS DE RESULTADO ===================== */
-
-h2 {
-  text-align: center;
-  color: #1f7a1f;
-  margin-top: 60px;
-  margin-bottom: 30px;
-  font-size: 22px;
+table button[name="id_producto"]:hover {
+  background: #1e40af;
+  transform: scale(1.05);
 }
 
-/* ===================== BOTÓN VOLVER / PRODUCTOS ===================== */
+/* Botón ELIMINAR (ROJO) */
+table button[name="eliminar"] {
+  background: #c1121f;
+  color: #ffffff;
+}
 
+table button[name="eliminar"]:hover {
+  background: #9b0e18;
+  transform: scale(1.05);
+}
+
+/* Alinear botones */
+td form {
+  display: inline;
+}
+
+/* ===================== ENLACE VOLVER ===================== */
 table + a {
   display: block;
   width: fit-content;
@@ -181,4 +208,3 @@ table + a {
 table + a:hover {
   background: #166534;
 }
-
