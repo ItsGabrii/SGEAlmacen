@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 02-02-2026 a las 10:46:47
+-- Tiempo de generación: 03-02-2026 a las 08:49:45
 -- Versión del servidor: 8.4.3
 -- Versión de PHP: 8.3.16
 
@@ -54,12 +54,20 @@ CREATE TABLE `plato_producto` (
 
 CREATE TABLE `productos` (
   `tipo` enum('ingrediente','otros') DEFAULT NULL,
-  `id_producto` int NOT NULL,
+  `id_producto` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `cod_proveedor` varchar(23) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `nombre` varchar(150) DEFAULT NULL,
   `cantidad` int DEFAULT NULL,
   `precio` decimal(8,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`tipo`, `id_producto`, `cod_proveedor`, `nombre`, `cantidad`, `precio`) VALUES
+('ingrediente', 'CP100', 'CP300', 'tomate', 4, 4.00),
+('ingrediente', 'CP101', 'CP301', 'queso', 10, 3.00);
 
 -- --------------------------------------------------------
 
@@ -132,12 +140,6 @@ ALTER TABLE `proveedores`
 --
 ALTER TABLE `platos`
   MODIFY `id_plato` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `productos`
---
-ALTER TABLE `productos`
-  MODIFY `id_producto` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedores`
