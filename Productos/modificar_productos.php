@@ -1,5 +1,5 @@
 <?php
-
+//Modificar stock productos
 if(isset($_POST['agregar_stock'])){
 
     $id_producto = $_POST['id_producto'];
@@ -9,29 +9,37 @@ if(isset($_POST['agregar_stock'])){
         die("La cantidad a añadir debe ser mayor que 0");
     }
 
-    // CONEXIÓN
-    $conexion = mysqli_connect("localhost","root","") or die("Error al establecer conexión con servidor de BBDD.");
-    mysqli_select_db($conexion,"almacen") or die("Error al seleccionar la BBDD");
 
-    // SELECT para comprobar si existe el producto
+  // CONEXIÓN
+  $conexion = mysqli_connect("localhost","root","") or die ("Error al establecer conexión con servidor de BBDD.");
+  mysqli_select_db($conexion,"almacen")or die ("Error al seleccionar la BBDD");
+
+  // SELECT para comprobar si existe el producto
+  $instruccionSelect = "SELECT * FROM productos WHERE id_producto='$id_producto'";
+  $consultaSelect = mysqli_query($conexion,$instruccionSelect) or die ("Error al mostrar datos.");
+
+  $numfilas = mysqli_num_rows($consultaSelect);
+  if($numfilas == 1){
+
+    // UPDATE A LA BBDD (sumamos stock)
+    $instruccionUpdate = "UPDATE productos SET
+      cantidad = cantidad + $cantidad_producto
+      WHERE id_producto='$id_producto'";
+    
+    $consultaUpdate = mysqli_query($conexion,$instruccionUpdate) or die ("Error al lanzar update de datos.");
+
     $instruccionSelect = "SELECT * FROM productos WHERE id_producto='$id_producto'";
-    $consultaSelect = mysqli_query($conexion,$instruccionSelect) or die("Error al mostrar datos.");
-
-    $numfilas = mysqli_num_rows($consultaSelect);
-    if($numfilas == 1){
-
-        // UPDATE A LA BBDD (sumamos stock)
-        $instruccionUpdate = "UPDATE productos SET
-          cantidad = cantidad + $cantidad_producto
-          WHERE id_producto='$id_producto'";
-        
-        $consultaUpdate = mysqli_query($conexion,$instruccionUpdate) or die("Error al lanzar update de datos.");
-
-        // SELECT actualizado
-        $instruccionSelect = "SELECT * FROM productos WHERE id_producto='$id_producto'";
-        $consultaSelect = mysqli_query($conexion,$instruccionSelect) or die("Error al mostrar registro actualizado.");
-
-        print "<h2>STOCK ACTUALIZADO CORRECTAMENTE:</h2>";
+    $consultaSelect = mysqli_query($conexion,$instruccionSelect) or die ("Error al mostrar registro actualizado. ");
+    
+    ?>
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+    <link rel="stylesheet" href="estilos_productos.css">
+    </head>
+    <body>
+<?php
+        print "<h2>STOCK ACTUALIZADO CORRECTAMENTE</h2>";
         print "<table border='1'>";
             print "<tr>";
                 print "<th>Tipo</th>";
@@ -42,34 +50,37 @@ if(isset($_POST['agregar_stock'])){
                 print "<th>Precio</th>";
             print "</tr>";
 
-        for($i=0; $i<$numfilas; $i++){
+        for($i=0;$i<$numfilas;$i++){
             $fila = mysqli_fetch_array($consultaSelect);
             print "<tr>";
-                print "<td>".$fila['tipo']."</td>";
-                print "<td>".$fila['id_producto']."</td>";
-                print "<td>".$fila['cod_proveedor']."</td>";
-                print "<td>".$fila['nombre']."</td>";
-                print "<td>".$fila['cantidad']."</td>";
-                print "<td>".$fila['precio']."</td>";         
+                print"<td>".$fila['tipo']."</td>";
+                print"<td>".$fila['id_producto']."</td>";
+                print"<td>".$fila['cod_proveedor']."</td>";
+                print"<td>".$fila['nombre']."</td>";
+                print"<td>".$fila['cantidad']."</td>";
+                print"<td>".$fila['precio']."</td>";         
             print "</tr>";            
         }
         print "</table>";
-        print "<a href='TablaProductos.php'>Productos Almacén</a>";
-        print "<br>";
-        print "<a href='modificar_productos.php'>Volver al Formulario</a>";
+?>
+        <a href="TablaProductos.php">Productos Almacén</a>
+      </body>
+    </html>
+<?php 
 
         mysqli_close($conexion);
+        
+  }else{
+    print("Error, ese producto no existe o no esta registrado.");
+    mysqli_close($conexion);
+  }
+}
+else {
 
-    } else {
-        print("Error, ese producto no existe o no está registrado.");
-        mysqli_close($conexion);
-    }
+  //Capturamos el id_producto enviado desde la tabla
+  $id_producto = isset($_POST['id_producto']) ? $_POST['id_producto'] : '';
 
-} else {
-
-    // Capturamos el id_producto enviado desde la tabla
-    $id_producto = isset($_POST['id_producto']) ? $_POST['id_producto'] : '';
-
+  // Formulario
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -95,15 +106,15 @@ if(isset($_POST['agregar_stock'])){
   </header>  
 
   <div id="formulario">
-    <h1>Agregar Stock a Producto</h1>
+    <h1>Agregar stock a producto</h1>
 
     <form method="post">
 
       <label>ID Producto:</label>
-      <input type="text" name="id_producto" value="<?php echo $id_producto; ?>" readonly required>
+      <input type="text" name="id_producto" value="<?php echo $id_producto;?>" readonly required>
 
       <label>Cantidad:</label>
-      <input type="number" name="cantidad_producto" min="1" required>
+      <input type="number" name="cantidad_producto" min="1" required >
       
       <input type="submit" name="agregar_stock" value="Agregar stock">
       
