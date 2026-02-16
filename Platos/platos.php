@@ -64,7 +64,7 @@ if (isset($_POST["Enviar"])) {
 
     echo "<br>
     <a href=''>Volver al formulario</a> | 
-    <a href='http://127.0.0.1/phpmyadmin/index.php?route=/sql&db=base_datos_dam&table=plato&pos=0' target='_blank'>Ir a la base de datos</a>";
+    <a href='tablaPlatos.php' target='_blank'>Ver tabla</a>";
 
     mysqli_close($conexion);
 
@@ -86,7 +86,8 @@ if (isset($_POST["Enviar"])) {
       <a href="index.html"><div class="logo">
         <div class="logo-icon">🍝</div>
         <span>Trattoria Bella Italia</span>
-      </div></a>
+      </div>
+    </a>
     </div>
   </header>
     <div id="formulario">
