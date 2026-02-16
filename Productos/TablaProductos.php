@@ -88,6 +88,10 @@ if($nFilas > 0){
         print "</tr>";
     }
     print "</table>";
+    //BOTON AÑADIR  
+    print "<form action= 'Productos.php' method='post'>";
+    print "<button type='submit' name = 'añadir'>Añadir</button>";
+    print "</form>";
 }
 
 mysqli_close($conexion);

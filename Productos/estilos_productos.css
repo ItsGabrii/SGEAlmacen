@@ -208,3 +208,32 @@ table + a {
 table + a:hover {
   background: #166534;
 }
+
+/* ===================== BOTON AÑADIR ===================== */
+table + form {
+  width: 90%;
+  max-width: 1000px;
+  margin: -40px auto 80px; 
+}
+
+table + form button {
+  padding: 10px 22px;
+  background: #1f7a1f;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  font-size: 14px;
+  font-family: "Georgia", serif;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+table + form button:hover {
+  background: #166534;
+  transform: scale(1.05);
+}
+
+
+
+
