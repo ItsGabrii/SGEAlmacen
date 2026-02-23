@@ -43,7 +43,7 @@
             echo "</table>";
 ?>
         <br></br>
-        <a href="TablaProveedores.php">Editar Proveedores</a>
+        <a href="Edicion_Proveedores.php">Editar Proveedores</a>
         <a href="Proveedores.php">Volver al formulario</a>
 
 <?php            
