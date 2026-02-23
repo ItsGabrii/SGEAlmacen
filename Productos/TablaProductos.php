@@ -37,6 +37,8 @@ if(isset($_POST['eliminar'])){
     mysqli_close($conexion);
 }
 
+
+
 /* ===================== MOSTRAR TABLA ===================== */
 $conexion = mysqli_connect("localhost","root","")
 or die("No se pudo conectar al servidor");
@@ -48,8 +50,20 @@ $instruccion = "select * from productos";
 $consulta = mysqli_query($conexion, $instruccion)
 or die ("No se pudo hacer la consulta");
 
+// Envolvemos ambos botones en un contenedor común para alinearlos
+echo "<div class='contenedor-botones-superior'>";
+    // Enlace Menu Almacén
+    echo "<a href='MenuAlmacen.php' class='boton-menu'>Menu Almacén</a>";
+
+    // Botón Añadir
+    print "<form action='Productos.php' method='post'>";
+        print "<button id='boton_aniadir' type='submit' name='añadir'>Añadir</button>";
+    print "</form>";
+echo "</div>";
+
 $nFilas = mysqli_num_rows($consulta);
 if($nFilas > 0){
+    
     print "<table border='1'>";
     print "<tr>";
 
@@ -88,10 +102,7 @@ if($nFilas > 0){
         print "</tr>";
     }
     print "</table>";
-    //BOTON AÑADIR  
-    print "<form action= 'Productos.php' method='post'>";
-    print "<button type='submit' name = 'añadir'>Añadir</button>";
-    print "</form>";
+
 }
 
 mysqli_close($conexion);

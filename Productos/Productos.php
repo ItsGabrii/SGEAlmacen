@@ -1,5 +1,5 @@
 <?php
-
+// Agregar producto nuevo
 if (isset($_POST['nuevo_producto'])) {
   $tipo_producto = $_POST['tipo_producto'];
   $id_producto = $_POST['id_producto'];
@@ -23,8 +23,10 @@ if (isset($_POST['nuevo_producto'])) {
 
   $numfilas = mysqli_num_rows($consultaSelect);
   if($numfilas == 1){
-        print "<h2>PRODUCTO NUEVO AÑADIDO AL ALMACÉN: </h2>";
-        print "<table border='1'>";
+        print '<link rel="stylesheet" href="estilos_productos.css">';
+        print "<h2>PRODUCTO AÑADIDO CORRECTAMENTE: </h2>";
+
+        print "<table>";
             print "<tr>";
                 print "<th>Tipo</th>";
                 print "<th>Id_producto</th>";
@@ -46,22 +48,22 @@ if (isset($_POST['nuevo_producto'])) {
             print "</tr>";            
         }
         print "</table>";
+       
 ?>
-        <a href="TablaProductos.php">Productos Almacén</a>
+        <a href="TablaProductos.php">Ir al Almacén de Productos</a>
 <?php      
     }else{
         print "No se ha insertado el nuevo producto correctamente.";
     }
     mysqli_close($conexion);
 
-}
-else {
+} else {
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Inserción de Productos</title>
+  <title>Productos</title>
 
   <!-- CSS EXTERNO -->
   <link rel="stylesheet" href="estilos_productos.css">
@@ -76,12 +78,17 @@ else {
                 <div class="logo-icon">🍝</div>
                 <span>Trattoria Bella Italia</span>
             </div>
+
         </a>
     </div>
   </header>  
 
+  <div class='contenedor-botones-superior'>
+  <br><a href='MenuAlmacen.php' class='boton-menu'>Menu Almacén</a>
+  </div>
+
   <div id="formulario">
-    <h1>Inserción de productos</h1>
+    <h1>AÑADIR NUEVOS PRODUCTOS</h1>
 
     <form method="post">
       <div class="radio-group">
@@ -105,6 +112,7 @@ else {
       <label>Precio:</label>
       <input type="number" name="precio_producto" required >
 
+      
       <input type="submit" name="nuevo_producto" value="Nuevo Producto">
 
     </form>
@@ -115,5 +123,3 @@ else {
 <?php 
 } 
 ?>
-
-

@@ -23,14 +23,11 @@
         <h1>Panel de Gestión Almacén</h1>
         
         <nav class="menu-navegacion">
-            <a href="Productos.php" class="boton-menu">
-                <span>➕</span> Añadir Nuevo Producto
-            </a>
             
             <a href="TablaProductos.php" class="boton-menu">
                 <span>📋</span> Ver Inventario (Tabla)
             </a>
-            
+
         </nav>
     </div>
 

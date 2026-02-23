@@ -30,45 +30,59 @@ if(isset($_POST['agregar_stock'])){
 
     $instruccionSelect = "SELECT * FROM productos WHERE id_producto='$id_producto'";
     $consultaSelect = mysqli_query($conexion,$instruccionSelect) or die ("Error al mostrar registro actualizado. ");
-    
-    ?>
+?>
     <!DOCTYPE html>
     <html lang="es">
     <head>
-    <link rel="stylesheet" href="estilos_productos.css">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="estilos_productos.css">
     </head>
     <body>
-<?php
-        print "<h2>STOCK ACTUALIZADO CORRECTAMENTE</h2>";
-        print "<table border='1'>";
-            print "<tr>";
-                print "<th>Tipo</th>";
-                print "<th>Id_producto</th>";
-                print "<th>Cod_proveedor</th>";
-                print "<th>Nombre</th>";
-                print "<th>Cantidad</th>";
-                print "<th>Precio</th>";
-            print "</tr>";
+        <header>
+            <div class="header-container">
+                <a href="index.html">
+                    <div class="logo">
+                        <div class="logo-icon">🍝</div>
+                        <span>Trattoria Bella Italia</span>
+                    </div>
+                </a>
+            </div>
+        </header>
 
-        for($i=0;$i<$numfilas;$i++){
-            $fila = mysqli_fetch_array($consultaSelect);
-            print "<tr>";
-                print"<td>".$fila['tipo']."</td>";
-                print"<td>".$fila['id_producto']."</td>";
-                print"<td>".$fila['cod_proveedor']."</td>";
-                print"<td>".$fila['nombre']."</td>";
-                print"<td>".$fila['cantidad']."</td>";
-                print"<td>".$fila['precio']."</td>";         
-            print "</tr>";            
-        }
-        print "</table>";
-?>
+        <h2>STOCK ACTUALIZADO CORRECTAMENTE</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo</th>
+                    <th>ID Producto</th>
+                    <th>Cod. Proveedor</th>
+                    <th>Nombre</th>
+                    <th>Cantidad Actual</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                while ($fila = mysqli_fetch_array($consultaSelect)) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($fila['tipo']) . "</td>";
+                    echo "<td>" . htmlspecialchars($fila['id_producto']) . "</td>";
+                    echo "<td>" . htmlspecialchars($fila['cod_proveedor']) . "</td>";
+                    echo "<td>" . htmlspecialchars($fila['nombre']) . "</td>";
+                    echo "<td>" . $fila['cantidad'] . "</td>";
+                    echo "<td>" . $fila['precio'] . " €</td>";
+                    echo "</tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+
         <a href="TablaProductos.php">Productos Almacén</a>
-      </body>
+    </body>
     </html>
 <?php 
-
-        mysqli_close($conexion);
+    mysqli_close($conexion);
         
   }else{
     print("Error, ese producto no existe o no esta registrado.");
