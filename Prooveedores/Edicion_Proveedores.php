@@ -18,7 +18,19 @@
         </a>
     </div>
 </header>
+
 <?php
+
+    //Boton  MEMU ALMACEN
+    print"<div class='contenedor-botones-superior'>";
+        print"<a href='MenuAlmacen.php' class='boton-menu'>Menu Almacén</a>";
+    
+    //BOTON AÑADIR PARA VOLVER AL FORMULARIO   
+    print "<form action= 'Proveedores.php' method='post'>";
+    print "<button id='boton_aniadir' type='submit' name = 'añadir'>Añadir</button>";
+    print "</form>";
+    print"</div>";
+
 //ELIMINAR PRODUCTO
 if(isset($_POST['eliminar'])){
     $id = $_POST['eliminar'];
@@ -77,10 +89,7 @@ if($nFilas > 0){
         print "</tr>";
     }
     print "</table>";
-    //BOTON AÑADIR PARA VOLVER AL FORMULARIO   
-    print "<form action= 'Proveedores.php' method='post'>";
-    print "<button type='submit' name = 'añadir'>Añadir</button>";
-    print "</form>";
+
 }
 
 mysqli_close($conexion);

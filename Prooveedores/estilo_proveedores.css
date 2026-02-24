@@ -198,17 +198,6 @@ table button {
   margin: 2px;
 }
 
-/* Botón MODIFICAR (AZUL) */
-table button[name="id_producto"] {
-  background: #2563eb;
-  color: #ffffff;
-}
-
-table button[name="id_producto"]:hover {
-  background: #1e40af;
-  transform: scale(1.05);
-}
-
 /* Botón ELIMINAR (ROJO) */
 table button[name="eliminar"] {
   background: #c1121f;
@@ -266,4 +255,31 @@ table + form button {
 table + form button:hover {
   background: #166534;
   transform: scale(1.05);
+}
+
+.contenedor-botones-superior {
+  display: flex;          /* Alineación en línea */
+  justify-content: center; /* Centrado horizontal */
+  align-items: center;     /* Centrado vertical entre ellos */
+  gap: 20px;              /* Espacio entre botones */
+  margin: 30px auto;      /* Margen superior e inferior */
+  width: 100%;
+}
+
+/* ===================== ESTILO UNIFICADO DE BOTONES ===================== */
+/* Usamos la COMA para aplicar el estilo a ambos elementos a la vez */
+#boton_aniadir, .boton-menu {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  min-width: 160px;
+  padding: 0 24px;
+  border: none; /* Esto quitará el borde negro de tu botón añadir */
+  cursor: pointer;
+ 
+  background-color: #1f7a1f;
+  color: white !important;
+  border-radius: 999px;
+  font-family: "Georgia", serif;
 }

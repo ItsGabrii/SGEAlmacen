@@ -18,7 +18,8 @@
 
         $nfilas = mysqli_num_rows($consultaInstruccionSelect);
 
-        if ($nfilas == 1){
+        if ($nfilas > 0){
+            echo '<link rel = stylesheet href = estilo_proveedores.css>';
             echo "<h2>NUEVO PROVEEDOR AÑADIDO AL ALMACÉN: </h2>";
             echo "<table border = '1'>";
             echo "<tr>
@@ -41,12 +42,14 @@
                 echo "</tr>";
             }
             echo "</table>";
-?>
-        <br></br>
-        <a href="Edicion_Proveedores.php">Editar Proveedores</a>
-        <a href="Proveedores.php">Volver al formulario</a>
+        print "<div class='contenedor-botones-superior'>";
+        print"<a href='Edicion_Proveedores.php' class='boton-menu'>Editar Proveedores</a>";
 
-<?php            
+        print "<form action= 'Proveedores.php' method='post'>";
+        print "<button id='boton_aniadir' type='submit' name = 'añadir'>Añadir</button>";
+        print "</form>";
+        print"</div>";
+                    
         }else{
             print "No se ha insertado el nuevo proveedor correctamente o ya existe.";
         }
@@ -72,6 +75,9 @@
         </a>
     </div>
     </header>
+    <div class='contenedor-botones-superior'>
+        <br><a href='MenuAlmacen.php' class='boton-menu'>Menu Almacén</a>
+    </div>
     <div id = "formulario">
         <h1>INSERCIÓN DE LOS PROVEEDORES</h1>
             <form method="POST">
