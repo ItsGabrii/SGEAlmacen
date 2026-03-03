@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST["Enviar"])) {
-    $conexion = mysqli_connect("localhost", "root", "", "base_datos_dam")
+    $conexion = mysqli_connect("localhost", "root", "", "restaurante_italiano")
         or die("No se puede conectar o seleccionar la base de datos");
 
     $nombre = $_POST["Nombre"];
@@ -18,7 +18,7 @@ if (isset($_POST["Enviar"])) {
         "champiñones" => 0.70
     ];
 
-     $precioTotal = 0;
+    $precioTotal = 0;
 
     for ($i = 1; $i <= 4; $i++) {
         $ingrediente = $_POST["Ingrediente$i"];
@@ -29,44 +29,79 @@ if (isset($_POST["Enviar"])) {
         }
     }
 
+    // Insertar el plato
     $sql = "INSERT INTO plato (nombre, descripcion, precio)
             VALUES ('$nombre', '$descripcion', '$precioTotal')";
-
     $resultado = mysqli_query($conexion, $sql);
 
-    echo $resultado
-        ? "<p style='color:green;'>El plato se agregó correctamente.</p>"
-        : "<p style='color:red;'>Hubo un error al agregar el plato.</p>";
-
-    
-
-    $consulta = "SELECT * FROM plato";
+    // Obtener el último plato añadido
+    $consulta = "SELECT * FROM plato ORDER BY id_plato DESC LIMIT 1";
     $resultadoConsulta = mysqli_query($conexion, $consulta);
+    $fila = mysqli_fetch_assoc($resultadoConsulta);
 
-    echo "<table border='1'>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Descripción</th>
-                <th>Precio</th>
-            </tr>";
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="estilo.css">
+    <title>Plato añadido</title>
+</head>
+<body>
 
-    while ($fila = mysqli_fetch_assoc($resultadoConsulta)) {
-        echo "<tr>
-                <td>{$fila['id_plato']}</td>
-                <td>{$fila['nombre']}</td>
-                <td>{$fila['descripcion']}</td>
-                <td>{$fila['precio']}</td>
-              </tr>";
-    }
+<!-- ===================== HEADER ===================== -->
+<header>
+    <div class="header-container">
+        <a href="index.html">
+            <div class="logo">
+                <div class="logo-icon">🍝</div>
+                <span>Trattoria Bella Italia</span>
+            </div>
+        </a>
+    </div>
+</header>
 
-    echo "</table>";
 
-    echo "<br>
-    <a href=''>Volver al formulario</a> | 
-    <a href='http://127.0.0.1/phpmyadmin/index.php?route=/sql&db=base_datos_dam&table=plato&pos=0' target='_blank'>Ir a la base de datos</a>";
 
-    mysqli_close($conexion);
+
+<?php
+if ($resultado) {
+    echo "<p style='color:green; text-align:center; margin-top:30px;'>El plato se agregó correctamente.</p><br><br>";
+} else {
+    echo "<p style='color:red; text-align:center; margin-top:30px;'>Hubo un error al agregar el plato.</p>";
+}
+?>
+
+
+
+<!-- ===================== TABLA DEL ÚLTIMO PLATO ===================== -->
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+    </tr>
+    <tr>
+        <td><?php echo $fila['id_plato']; ?></td>
+        <td><?php echo $fila['nombre']; ?></td>
+        <td><?php echo $fila['descripcion']; ?></td>
+        <td><?php echo $fila['precio']; ?> €</td>
+    </tr>
+</table>
+
+<div class="contenedor-botones-superior">
+    <a href="platos.php" id="boton_aniadir" >Añadir Plato</a>
+   <a href="modificar_plato.php" class="boton-menu" >Ver tabla</a>
+    <a href="../Productos/MenuAlmacen.php" class="boton-menu" >Menu Almacén</a>
+</div>
+
+
+</body>
+</html>
+
+<?php
+mysqli_close($conexion);
 
 } else {
 ?>
@@ -86,9 +121,18 @@ if (isset($_POST["Enviar"])) {
       <a href="index.html"><div class="logo">
         <div class="logo-icon">🍝</div>
         <span>Trattoria Bella Italia</span>
-      </div></a>
+      </div>
+    </a>
     </div>
   </header>
+
+    <!-- Boton Menu Almacén-->
+    <div class="contenedor-botones-superior">
+        
+        <a href="../Productos/MenuAlmacen.php" class="boton-menu" >Menu Almacén</a>
+    </div>
+
+
     <div id="formulario">
     <form action="" method="post">
         <h1>Inserción de platos</h1>

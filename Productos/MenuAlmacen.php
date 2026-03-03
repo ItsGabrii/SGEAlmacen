@@ -24,9 +24,19 @@
         
         <nav class="menu-navegacion">
             
-            <a href="TablaProductos.php" class="boton-menu">
-                <span>📋</span> Ver Inventario (Tabla)
+            <a href="../Platos/modificar_plato.php" class="boton-menu">
+                <span>📋</span> Ver Platos (Tabla)
             </a>
+
+            <a href="TablaProductos.php" class="boton-menu">
+                <span>📋</span> Ver Productos (Tabla)
+            </a>
+
+            <a href="../Proveedores/Edicion_Proveedores.php" class="boton-menu">
+                <span>📋</span> Ver Proveedores (Tabla)
+            </a>
+
+
 
         </nav>
     </div>

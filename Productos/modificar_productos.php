@@ -12,23 +12,23 @@ if(isset($_POST['agregar_stock'])){
 
   // CONEXIÓN
   $conexion = mysqli_connect("localhost","root","") or die ("Error al establecer conexión con servidor de BBDD.");
-  mysqli_select_db($conexion,"almacen")or die ("Error al seleccionar la BBDD");
+  mysqli_select_db($conexion,"restaurante_italiano")or die ("Error al seleccionar la BBDD");
 
   // SELECT para comprobar si existe el producto
-  $instruccionSelect = "SELECT * FROM productos WHERE id_producto='$id_producto'";
+  $instruccionSelect = "SELECT * FROM producto WHERE id_producto='$id_producto'";
   $consultaSelect = mysqli_query($conexion,$instruccionSelect) or die ("Error al mostrar datos.");
 
   $numfilas = mysqli_num_rows($consultaSelect);
   if($numfilas == 1){
 
     // UPDATE A LA BBDD (sumamos stock)
-    $instruccionUpdate = "UPDATE productos SET
+    $instruccionUpdate = "UPDATE producto SET
       cantidad = cantidad + $cantidad_producto
       WHERE id_producto='$id_producto'";
     
     $consultaUpdate = mysqli_query($conexion,$instruccionUpdate) or die ("Error al lanzar update de datos.");
 
-    $instruccionSelect = "SELECT * FROM productos WHERE id_producto='$id_producto'";
+    $instruccionSelect = "SELECT * FROM producto WHERE id_producto='$id_producto'";
     $consultaSelect = mysqli_query($conexion,$instruccionSelect) or die ("Error al mostrar registro actualizado. ");
 ?>
     <!DOCTYPE html>

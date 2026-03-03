@@ -27,10 +27,10 @@ if(isset($_POST['eliminar'])){
     $conexion = mysqli_connect("localhost","root","")
     or die("No se pudo conectar al servidor");
 
-    mysqli_select_db($conexion, "almacen")
+    mysqli_select_db($conexion, "restaurante_italiano")
     or die ("No se pudo seleccionar la base de datos");
 
-    $instruccionDelete = "DELETE FROM productos WHERE id_producto = '$id_producto'";
+    $instruccionDelete = "DELETE FROM producto WHERE id_producto = '$id_producto'";
     mysqli_query($conexion, $instruccionDelete)
     or die ("No se pudo eliminar el producto");
 
@@ -43,10 +43,10 @@ if(isset($_POST['eliminar'])){
 $conexion = mysqli_connect("localhost","root","")
 or die("No se pudo conectar al servidor");
 
-$DB = mysqli_select_db($conexion, "almacen")
+$DB = mysqli_select_db($conexion, "restaurante_italiano")
 or die ("No se pudo seleccionar la base de datos");
 
-$instruccion = "select * from productos";
+$instruccion = "select * from producto";
 $consulta = mysqli_query($conexion, $instruccion)
 or die ("No se pudo hacer la consulta");
 

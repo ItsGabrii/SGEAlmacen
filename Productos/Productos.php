@@ -2,7 +2,6 @@
 // Agregar producto nuevo
 if (isset($_POST['nuevo_producto'])) {
   $tipo_producto = $_POST['tipo_producto'];
-  $id_producto = $_POST['id_producto'];
   $codigo_proveedor = $_POST['codigo_proveedor'];
   $nombreProducto = $_POST['nombre_producto'];
   $cantidad_producto = $_POST['cantidad_producto'];
@@ -10,15 +9,18 @@ if (isset($_POST['nuevo_producto'])) {
 
   // CONEXIÓN
   $conexion = mysqli_connect("localhost","root","") or die ("Error al establecer conexión con servidor de BBDD.");
-  mysqli_select_db($conexion,"almacen")or die ("Error al seleccionar la BBDD");
+  mysqli_select_db($conexion,"restaurante_italiano")or die ("Error al seleccionar la BBDD");
 
   // INSERT A LA BBDD 
-  $instruccionInsert = "INSERT INTO productos(tipo, id_producto, cod_proveedor, nombre, cantidad, precio)
-                        VALUES ('$tipo_producto', '$id_producto', '$codigo_proveedor', '$nombreProducto', '$cantidad_producto','$precio_producto')";
+  $instruccionInsert = "INSERT INTO producto(tipo, cod_proveedor, nombre, cantidad, precio)
+                        VALUES ('$tipo_producto', '$codigo_proveedor', '$nombreProducto', '$cantidad_producto','$precio_producto')";
   $consultaInsert = mysqli_query($conexion,$instruccionInsert) or die ("Error al insertar datos.");
 
+  // 3. RECUPERAMOS EL ID QUE ACABA DE GENERAR MYSQL
+  $ultimo_id = mysqli_insert_id($conexion);
+
   // SELECT MOSTRAR EL INSERT 
-  $instruccionSelect = "SELECT * FROM productos WHERE id_producto = '$id_producto'";
+  $instruccionSelect = "SELECT * FROM producto WHERE id_producto = '$ultimo_id'";
   $consultaSelect = mysqli_query($conexion,$instruccionSelect) or die ("Error al mostrar datos.");
 
   $numfilas = mysqli_num_rows($consultaSelect);
@@ -96,9 +98,6 @@ if (isset($_POST['nuevo_producto'])) {
         <input type="radio" name="tipo_producto" value="ingrediente" required > Ingredientes &nbsp&nbsp&nbsp&nbsp 
         <input type="radio" name="tipo_producto" value="otros" required> Otros
       </div>
-
-      <label>ID Producto:</label>
-      <input type="text" name="id_producto" required maxlength="6">
 
       <label>Código Proveedor:</label>
       <input type="text" name="codigo_proveedor" required maxlength="6">
