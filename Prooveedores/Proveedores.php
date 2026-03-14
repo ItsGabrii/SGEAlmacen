@@ -8,9 +8,9 @@
         $contacto = $_POST ['correo'];
 
         $conexion = mysqli_connect("localhost","root","")or die("No se puede conectar.");
-        mysqli_select_db($conexion,"almacen")or die("No se puede seleccionar la base de datos.");
+        mysqli_select_db($conexion,"restaurante_italiano")or die("No se puede seleccionar la base de datos.");
 
-        $instruccionInsert = "INSERT INTO proveedores (id_proveedor, nombre, cif, direccion, telefono, contacto) VALUES ('$id', '$nombre', '$cif', '$direccion', '$telefono', '$contacto')";
+        $instruccionInsert = "INSERT INTO proveedores (id_proveedor, nombre, cif, direccion, telefono, correo) VALUES ('$id', '$nombre', '$cif', '$direccion', '$telefono', '$contacto')";
         $consultaInstruccionInsert = mysqli_query($conexion, $instruccionInsert)or die("No se ha podido insertar el proveedor.");
 
         $instruccionSelect = "SELECT * FROM proveedores WHERE id_proveedor = '$id'";
@@ -38,7 +38,7 @@
                     echo "<td>".$fila['cif']."</td>";
                     echo "<td>".$fila['direccion']."</td>";
                     echo "<td>".$fila['telefono']."</td>";
-                    echo "<td>".$fila['contacto']."</td>";
+                    echo "<td>".$fila['correo']."</td>";
                 echo "</tr>";
             }
             echo "</table>";

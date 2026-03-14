@@ -38,7 +38,7 @@ if(isset($_POST['eliminar'])){
     $conexion = mysqli_connect("localhost","root","")
     or die("No se pudo conectar al servidor");
 
-    mysqli_select_db($conexion, "almacen")
+    mysqli_select_db($conexion, "restaurante_italiano")
     or die ("No se pudo seleccionar la base de datos");
 
     $instruccionDelete = "DELETE FROM PROVEEDORES WHERE id_proveedor = '$id'";
@@ -50,7 +50,7 @@ if(isset($_POST['eliminar'])){
 //HACER EL SELECT DE LA TABLA
 $conexion = mysqli_connect("localhost","root","")or die("No se pudo conectar al servidor");
 
-$DB = mysqli_select_db($conexion, "almacen")or die ("No se pudo seleccionar la base de datos");
+$DB = mysqli_select_db($conexion, "restaurante_italiano")or die ("No se pudo seleccionar la base de datos");
 
 $instruccion = "SELECT * FROM PROVEEDORES";
 $consulta = mysqli_query($conexion, $instruccion)or die ("No se pudo hacer la consulta");
@@ -76,13 +76,18 @@ if($nFilas > 0){
         print "<td>".$fila["cif"]."</td>";
         print "<td>".$fila["direccion"]."</td>";
         print "<td>".$fila["telefono"]."</td>";
-        print "<td>".$fila["contacto"]."</td>";
+        print "<td>".$fila["correo"]."</td>";
 
         print "<td>";
 
-        // FORMULARIO ELIMINAR
+        // BOTÓN ELIMINAR
         print "<form action='Edicion_Proveedores.php' method='post' style='display:inline'>";
         print "<button type='submit' name='eliminar' value='".$fila["id_proveedor"]."'>Eliminar</button>";
+        print "</form>";
+
+        // NUEVO: BOTÓN PEDIR (Redirige a Realizar_Pedido.php)
+        print "<form action='Realizar_Pedido.php' method='post' style='display:inline'>";
+        print "<button type='submit' name='pedir' style='background:#2271b3; color:white;' value='".$fila["id_proveedor"]."'>Pedir</button>";
         print "</form>";
 
         print "</td>";
