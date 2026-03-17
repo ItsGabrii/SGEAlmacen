@@ -8,9 +8,9 @@
         $contacto = $_POST ['correo'];
 
         $conexion = mysqli_connect("localhost","root","")or die("No se puede conectar.");
-        mysqli_select_db($conexion,"almacen")or die("No se puede seleccionar la base de datos.");
+        mysqli_select_db($conexion,"restaurante_italiano")or die("No se puede seleccionar la base de datos.");
 
-        $instruccionInsert = "INSERT INTO proveedores (id_proveedor, nombre, cif, direccion, telefono, contacto) VALUES ('$id', '$nombre', '$cif', '$direccion', '$telefono', '$contacto')";
+        $instruccionInsert = "INSERT INTO proveedores (id_proveedor, nombre, cif, direccion, telefono, correo) VALUES ('$id', '$nombre', '$cif', '$direccion', '$telefono', '$contacto')";
         $consultaInstruccionInsert = mysqli_query($conexion, $instruccionInsert)or die("No se ha podido insertar el proveedor.");
 
         $instruccionSelect = "SELECT * FROM proveedores WHERE id_proveedor = '$id'";
@@ -18,7 +18,8 @@
 
         $nfilas = mysqli_num_rows($consultaInstruccionSelect);
 
-        if ($nfilas == 1){
+        if ($nfilas > 0){
+            echo '<link rel = stylesheet href = estilo_proveedores.css>';
             echo "<h2>NUEVO PROVEEDOR AÑADIDO AL ALMACÉN: </h2>";
             echo "<table border = '1'>";
             echo "<tr>
@@ -37,16 +38,18 @@
                     echo "<td>".$fila['cif']."</td>";
                     echo "<td>".$fila['direccion']."</td>";
                     echo "<td>".$fila['telefono']."</td>";
-                    echo "<td>".$fila['contacto']."</td>";
+                    echo "<td>".$fila['correo']."</td>";
                 echo "</tr>";
             }
             echo "</table>";
-?>
-        <br></br>
-        <a href="TablaProveedores.php">Editar Proveedores</a>
-        <a href="Proveedores.php">Volver al formulario</a>
+        print "<div class='contenedor-botones-superior'>";
+        print"<a href='Edicion_Proveedores.php' class='boton-menu'>Editar Proveedores</a>";
 
-<?php            
+        print "<form action= 'Proveedores.php' method='post'>";
+        print "<button id='boton_aniadir' type='submit' name = 'añadir'>Añadir</button>";
+        print "</form>";
+        print"</div>";
+                    
         }else{
             print "No se ha insertado el nuevo proveedor correctamente o ya existe.";
         }
@@ -72,6 +75,9 @@
         </a>
     </div>
     </header>
+    <div class='contenedor-botones-superior'>
+        <br><a href='MenuAlmacen.php' class='boton-menu'>Menu Almacén</a>
+    </div>
     <div id = "formulario">
         <h1>INSERCIÓN DE LOS PROVEEDORES</h1>
             <form method="POST">
