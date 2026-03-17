@@ -1,5 +1,5 @@
 <?php
-$conexion = mysqli_connect("localhost", "root", "", "base_datos_dam")
+$conexion = mysqli_connect("localhost", "root", "", "restaurante_italiano")
     or die("No se puede conectar a la base de datos");
 
 $mensaje = "";
@@ -67,6 +67,8 @@ if (isset($_POST['id_producto'])) {
     </div>
 </header>
 
+
+
 <div id="formulario">
     <h1>Modificar Plato</h1>
 
@@ -118,6 +120,12 @@ $consulta = mysqli_query($conexion, "SELECT * FROM plato");
     </div>
 </header>
 
+<div class="contenedor-botones-superior">
+        <a href="../Productos/MenuAlmacen.php" class="boton-menu" >Menu Almacén</a>
+        <a href="platos.php" id="boton_aniadir" >Añadir Plato</a>
+        
+</div>
+
 <?php echo $mensaje; ?>
 
 <table>
@@ -153,9 +161,7 @@ while ($fila = mysqli_fetch_assoc($consulta)) {
 
 </table>
 
-<div style="text-align:center; margin-top:30px;">
-    <a href="platos.php" class="enlace">Volver al formulario</a>
-</div>
+
 
 </body>
 </html>
