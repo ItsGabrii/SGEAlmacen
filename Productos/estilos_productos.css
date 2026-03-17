@@ -7,18 +7,26 @@
 }
 
 body {
-  background-color: #fafafa;
+  background-color: #f4f6f8; /* Color más neutro tipo panel */
   color: #2b2b2b;
 }
 
 /* ===================== FORMULARIO ===================== */
 #formulario {
+  
   max-width: 520px;
   margin: 80px auto;
   background: #ffffff;
   padding: 32px;
   border-radius: 14px;
   box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+}
+
+h2 {
+  margin-top: 40px;
+  text-align: center;
+  color: #1f7a1f;
+  margin-bottom: 24px;
 }
 
 #formulario h1 {
@@ -59,16 +67,18 @@ input[type="submit"] {
   font-size: 16px;
   cursor: pointer;
   transition: background 0.2s;
-  margin-top:20px;
+  margin-top: 20px;
 }
 
 input[type="submit"]:hover {
   background: #166534;
 }
+
 /* ---------- HEADER ---------- */
 a {
   text-decoration: none;
   color: inherit;
+  
 }
 
 header {
@@ -103,4 +113,158 @@ header {
   font-size: 22px;
   font-weight: bold;
   color: #1f7a1f;
+}
+
+
+.menu-navegacion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* centra horizontalmente */
+  gap: 20px;             /* espacio entre botones */
+}
+
+/* ===================== TABLA PRODUCTOS - ESTILO ADMIN ===================== */
+table {
+  width: 90%;
+  max-width: 1000px;
+  margin: 60px auto;
+  background: #ffffff;
+  border-collapse: collapse;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  overflow: hidden;
+  font-size: 14px;
+}
+
+/* Cabecera */
+th {
+  background: #1f2937; /* gris oscuro tipo admin panel */
+  color: #ffffff;
+  padding: 14px;
+  text-align: center;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Filas */
+td {
+  padding: 12px 10px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Filas alternas */
+tr:nth-child(even) td {
+  background-color: #f8f9fa;
+}
+
+/* Hover elegante */
+tr:hover td {
+  background-color: #e0f2fe; /* azul claro al pasar */
+}
+
+/* Última fila sin borde */
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* ===================== BOTONES ===================== */
+table button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: "Georgia", serif;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin: 2px;
+}
+
+/* Botón MODIFICAR (AZUL) */
+table button[name="id_producto"] {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+table button[name="id_producto"]:hover {
+  background: #1e40af;
+  transform: scale(1.05);
+}
+
+/* Botón ELIMINAR (ROJO) */
+table button[name="eliminar"] {
+  background: #c1121f;
+  color: #ffffff;
+}
+
+table button[name="eliminar"]:hover {
+  background: #9b0e18;
+  transform: scale(1.05);
+}
+
+/* Alinear botones */
+td form {
+  display: inline;
+}
+
+/* ===================== ENLACE VOLVER ===================== */
+table + a {
+  display: block;
+  width: fit-content;
+  margin: 30px auto 80px;
+  padding: 12px 26px;
+  background: #1f7a1f;
+  color: white;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+table + a:hover {
+  background: #166534;
+}
+
+/* ===================== BOTONES AÑADIR Y MENU ===================== */
+/* ===================== CONTENEDOR DE BOTONES ===================== */
+.contenedor-botones-superior {
+  display: flex;          /* Alineación en línea */
+  justify-content: center; /* Centrado horizontal */
+  align-items: center;     /* Centrado vertical entre ellos */
+  gap: 20px;              /* Espacio entre botones */
+  margin: 30px auto;      /* Margen superior e inferior */
+  width: 100%;
+}
+
+/* ===================== ESTILO UNIFICADO DE BOTONES ===================== */
+/* Usamos la COMA para aplicar el estilo a ambos elementos a la vez */
+#boton_aniadir, .boton-menu {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  min-width: 160px;
+  padding: 0 24px;
+  border: none; /* Esto quitará el borde negro de tu botón añadir */
+  cursor: pointer;
+  
+  background-color: #1f7a1f;
+  color: white !important;
+  border-radius: 999px;
+  font-family: "Georgia", serif;
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+  
+  transition: all 0.2s ease;
+  margin: 0 !important; /* Limpia los márgenes de 465px que tenías antes */
+}
+
+/* ===================== EFECTO HOVER ===================== */
+/* También usamos la COMA aquí para el efecto al pasar el ratón */
+#boton_aniadir:hover, .boton-menu:hover {
+  background-color: #166534;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
